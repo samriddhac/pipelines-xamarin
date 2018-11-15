@@ -4,6 +4,7 @@ Write-Host "Client $args."
 
 function HasProperty($object, $propertyName)
 {
+	Write-Host "reached $propertyName"
     $propertyName -in $object.PSobject.Properties.Name
 }
 
@@ -31,6 +32,10 @@ if (HasProperty($assetConfig, $client))
 		{
 			$exclusionFiles = $clientAssetProperty.$exclusionProperty
 			Write-Host "Excluded Files $exclusionFiles."
+			foreach ($element in $exclusionFiles) {
+				$filePath = $assetDir+$element
+				Remove-Item -path $filePath
+			}
 		}
 	}
 }
