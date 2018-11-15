@@ -2,6 +2,11 @@ Write-Host "Agent Name $Env:AGENT_NAME."
 Write-Host "Agent ID is $Env:AGENT_ID."
 Write-Host "Client $args."
 
+function HasProperty($object, $propertyName)
+{
+    $propertyName -in $object.PSobject.Properties.Name
+}
+
 $assetConfigPath = $Env:BUILD_SOURCESDIRECTORY+'\asset-config.json'
 if (-not $assetConfigPath)
 {
@@ -11,8 +16,21 @@ if (-not $assetConfigPath)
 
 $client = $args
 $assetConfig = Get-Content $assetConfigPath | Out-String | ConvertFrom-Json
+$assetProperty = 'assets'
+$exclusionProperty = 'excludes'
+$assetDir = $Env:BUILD_SOURCESDIRECTORY+'\*Android\Assets\'
 
-gci $Env:AGENT_BUILDDIRECTORY
-Write-Host "BUILD_SOURCESDIRECTORY contents:"
-gci $Env:BUILD_SOURCESDIRECTORY
+if (HasProperty($assetConfig, $client))
+{
+	$clientProperty = $assetConfig.$client
+	if(HasProperty($clientProperty, $assetProperty)) 
+	{
+		$clientAssetProperty = $clientProperty.$assetProperty
+		if(HasProperty($clientAssetProperty, $exclusionProperty))
+		{
+			$exclusionFiles = $clientAssetProperty.$exclusionProperty
+			Write-Host "Excluded Files $exclusionFiles."
+		}
+	}
+}
 Write-Host "Script Execution Completed"
