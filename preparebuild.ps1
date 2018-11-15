@@ -16,6 +16,8 @@ if (-not $assetConfigPath)
 }
 
 $client = $args
+Write-Host "Client $args."
+Write-Host "Client $client."
 $assetConfig = Get-Content $assetConfigPath | Out-String | ConvertFrom-Json
 $assetProperty = 'assets'
 $exclusionProperty = 'excludes'
