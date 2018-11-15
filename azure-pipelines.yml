@@ -15,9 +15,21 @@ jobs:
   steps:
   - task: NuGetToolInstaller@0
 
-  - task: NuGetCommand@2
+  - task: NuGetCommand@1
     inputs:
       restoreSolution: '**/*.sln'
+      
+  - task: PowerShell@1
+    inputs:
+      targetType: 'filePath'
+      filePath: './prepare-build.ps1'
+      #arguments: # Optional
+      #script: '# Write your powershell commands here.' # Required when targetType == Inline
+      #errorActionPreference: 'stop' # Optional. Options: stop, continue, silentlyContinue
+      #failOnStderr: false # Optional
+      #ignoreLASTEXITCODE: false # Optional
+      #pwsh: false # Optional
+      #workingDirectory: # Optional
 
   - task: XamarinAndroid@1
     inputs:
@@ -25,7 +37,7 @@ jobs:
       outputDirectory: '$(outputDirectory)'
       configuration: '$(buildConfiguration)'
 
-  - task: AndroidSigning@2
+  - task: AndroidSigning@1
     inputs:
       apkFiles: '$(outputDirectory)/*.apk'
       jarsign: true
@@ -34,7 +46,7 @@ jobs:
       jarsignerKeystoreAlias: 'androidSignKey'
       jarsignerKeyPassword: '$(jarsignerKeyPassword)'
       zipalign: true
-  - task: CopyFiles@2
+  - task: CopyFiles@1
     inputs:
       contents: '**/*.apk'
       targetFolder: '$(build.artifactStagingDirectory)'
