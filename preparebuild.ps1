@@ -2,7 +2,7 @@ Write-Host "Agent Name $Env:AGENT_NAME."
 Write-Host "Agent ID is $Env:AGENT_ID."
 Write-Host "Client $args[0]."
 
-$assetConfigPath = $Env:BUILD_SOURCESDIRECTORY/asset-config.json
+$assetConfigPath = $Env:BUILD_SOURCESDIRECTORY+'\asset-config.json'
 if (-not $assetConfigPath)
 {
     Write-Error ("Asset Configuration File is missing.")
