@@ -2,14 +2,9 @@ Write-Host "Agent Name $Env:AGENT_NAME."
 Write-Host "Agent ID is $Env:AGENT_ID."
 Write-Host "Client $args."
 
-function HasProperty
+function HasProperty($object, [string] $propertyName)
 {
-	[CmdletBinding()]
-	  param (
-		  $object
-		, [string] $propertyName
-	  )
-	Write-Host "reached $propertyName"
+	Write-Host "Property $propertyName"
     $propertyName -in $object.PSobject.Properties.Name
 }
 
@@ -28,7 +23,7 @@ $assetProperty = 'assets'
 $exclusionProperty = 'excludes'
 $assetDir = $Env:BUILD_SOURCESDIRECTORY+'\*Android\Assets\'
 
-if (HasProperty($assetConfig, $args[0]))
+if (HasProperty($assetConfig, $client))
 {
 	Write-Host "reached here"
 	$clientProperty = $assetConfig.$client
