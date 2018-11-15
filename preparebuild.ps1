@@ -1,6 +1,6 @@
 Write-Host "Agent Name $Env:AGENT_NAME."
 Write-Host "Agent ID is $Env:AGENT_ID."
-Write-Host "Client $args[0]."
+Write-Host "Client $args."
 
 $assetConfigPath = $Env:BUILD_SOURCESDIRECTORY+'\asset-config.json'
 if (-not $assetConfigPath)
@@ -9,8 +9,8 @@ if (-not $assetConfigPath)
     exit 1
 }
 
-$client = $args[0]
-$assetConfig = Get-Content '$Env:BUILD_SOURCESDIRECTORY/asset-config.json' | Out-String | ConvertFrom-Json
+$client = $args
+$assetConfig = Get-Content $assetConfigPath | Out-String | ConvertFrom-Json
 
 gci $Env:AGENT_BUILDDIRECTORY
 Write-Host "BUILD_SOURCESDIRECTORY contents:"
