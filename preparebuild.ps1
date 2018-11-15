@@ -20,11 +20,9 @@ $assetProperty = 'assets'
 $exclusionProperty = 'excludes'
 $assetDir = $Env:BUILD_SOURCESDIRECTORY+'\*Android\Assets\'
 
-Write-Error ("$assetConfig")
-Write-Error ("HasProperty($assetConfig, $client)")
-
 if (HasProperty($assetConfig, $client))
 {
+	Write-Host "reached here"
 	$clientProperty = $assetConfig.$client
 	if(HasProperty($clientProperty, $assetProperty)) 
 	{
