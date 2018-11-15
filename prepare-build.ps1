@@ -1,3 +1,1 @@
-echo "Hello World"
-pwd
-ls
+Get-Command
