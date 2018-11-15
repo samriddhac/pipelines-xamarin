@@ -23,7 +23,7 @@ $assetProperty = 'assets'
 $exclusionProperty = 'excludes'
 $assetDir = $Env:BUILD_SOURCESDIRECTORY+'\*Android\Assets\'
 
-if (HasProperty($assetConfig, $client))
+if (HasProperty($assetConfig, $args))
 {
 	Write-Host "reached here"
 	$clientProperty = $assetConfig.$client
@@ -36,6 +36,7 @@ if (HasProperty($assetConfig, $client))
 			Write-Host "Excluded Files $exclusionFiles."
 			foreach ($element in $exclusionFiles) {
 				$filePath = $assetDir+$element
+                Write-Host "Deleting File $filePath"
 				Remove-Item -path $filePath
 			}
 		}
