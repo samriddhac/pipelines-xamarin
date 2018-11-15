@@ -20,7 +20,7 @@ if (-not $assetConfigPath)
     exit 1
 }
 
-$client = $args
+$client = $args[0]
 Write-Host "Client $args."
 Write-Host "Client $client."
 $assetConfig = Get-Content $assetConfigPath | Out-String | ConvertFrom-Json
@@ -28,7 +28,7 @@ $assetProperty = 'assets'
 $exclusionProperty = 'excludes'
 $assetDir = $Env:BUILD_SOURCESDIRECTORY+'\*Android\Assets\'
 
-if (HasProperty($assetConfig, $args))
+if (HasProperty($assetConfig, $args[0]))
 {
 	Write-Host "reached here"
 	$clientProperty = $assetConfig.$client
