@@ -2,12 +2,6 @@ Write-Host "Agent Name $Env:AGENT_NAME."
 Write-Host "Agent ID is $Env:AGENT_ID."
 Write-Host "Client $args."
 
-function HasProperty($object, [string] $propertyName)
-{
-	Write-Host "Property $propertyName"
-    $propertyName -in $object.PSobject.Properties.Name
-}
-
 $assetConfigPath = $Env:BUILD_SOURCESDIRECTORY+'\asset-config.json'
 if (-not $assetConfigPath)
 {
@@ -23,14 +17,14 @@ $assetProperty = 'assets'
 $exclusionProperty = 'excludes'
 $assetDir = $Env:BUILD_SOURCESDIRECTORY+'\*Android\Assets\'
 
-if (HasProperty($assetConfig, $client))
+if ($client -in $assetConfig.PSobject.Properties.Name)
 {
 	Write-Host "reached here"
 	$clientProperty = $assetConfig.$client
-	if(HasProperty($clientProperty, $assetProperty)) 
+	if($assetProperty -in $clientProperty.PSobject.Properties.Name) 
 	{
 		$clientAssetProperty = $clientProperty.$assetProperty
-		if(HasProperty($clientAssetProperty, $exclusionProperty))
+		if($exclusionProperty -in $clientAssetProperty.PSobject.Properties.Name)
 		{
 			$exclusionFiles = $clientAssetProperty.$exclusionProperty
 			Write-Host "Excluded Files $exclusionFiles."
