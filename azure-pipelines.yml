@@ -22,7 +22,7 @@ jobs:
   - task: PowerShell@1
     inputs:
       targetType: 'filePath'
-      filePath: 'prepare-build.ps1'
+      filePath: '$(Build.SourcesDirectory)/prepare-build.ps1'
       #arguments: # Optional
       #script: '# Write your powershell commands here.' # Required when targetType == Inline
       #errorActionPreference: 'stop' # Optional. Options: stop, continue, silentlyContinue
