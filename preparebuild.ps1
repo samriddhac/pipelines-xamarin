@@ -1,9 +1,17 @@
-Write-Host "Hello World from $Env:AGENT_NAME."
-Write-Host "My ID is $Env:AGENT_ID."
-Write-Host "AGENT_WORKFOLDER contents:"
-gci $Env:AGENT_WORKFOLDER
-Write-Host "AGENT_BUILDDIRECTORY contents:"
+Write-Host "Agent Name $Env:AGENT_NAME."
+Write-Host "Agent ID is $Env:AGENT_ID."
+Write-Host "Client $args[0]."
+
+if (-not $Env:BUILD_SOURCESDIRECTORY/asset-config.json)
+{
+    Write-Error ("Asset Configuration File is missing.")
+    exit 1
+}
+
+$client = $args[0]
+$assetConfig = Get-Content '$Env:BUILD_SOURCESDIRECTORY/asset-config.json' | Out-String | ConvertFrom-Json
+
 gci $Env:AGENT_BUILDDIRECTORY
 Write-Host "BUILD_SOURCESDIRECTORY contents:"
 gci $Env:BUILD_SOURCESDIRECTORY
-Write-Host "Over and out."
+Write-Host "Script Execution Completed"

@@ -23,7 +23,7 @@ jobs:
     inputs:
       targetType: 'filePath'
       filePath: 'preparebuild.ps1'
-      #arguments: # Optional
+      arguments: '$(client)'
       #script: '# Write your powershell commands here.' # Required when targetType == Inline
       #errorActionPreference: 'stop' # Optional. Options: stop, continue, silentlyContinue
       #failOnStderr: false # Optional
@@ -37,7 +37,7 @@ jobs:
       outputDirectory: '$(outputDirectory)'
       configuration: '$(buildConfiguration)'
 
-  - task: AndroidSigning@1
+  - task: AndroidSigning@2
     inputs:
       apkFiles: '$(outputDirectory)/*.apk'
       jarsign: true
@@ -46,19 +46,23 @@ jobs:
       jarsignerKeystoreAlias: 'androidSignKey'
       jarsignerKeyPassword: '$(jarsignerKeyPassword)'
       zipalign: true
-  - task: CopyFiles@1
+      
+  - task: CopyFiles@2
     inputs:
       contents: '**/*.apk'
       targetFolder: '$(build.artifactStagingDirectory)'
+      
   - task: PublishBuildArtifacts@1
     inputs:
       pathtoPublish: '$(outputDirectory)'
+      
   - task: AppCenterDistribute@1
     inputs:
       serverEndpoint: 'App Center'
       appSlug: 'samriddhac-gmail.com/test-app'
       appFile: '**/*.apk'
       releaseNotesInput: 'test release'
+      
 - job: iOS
   pool:
     vmImage: 'macOS 10.13'
