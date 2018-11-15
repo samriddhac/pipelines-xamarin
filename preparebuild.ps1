@@ -2,8 +2,13 @@ Write-Host "Agent Name $Env:AGENT_NAME."
 Write-Host "Agent ID is $Env:AGENT_ID."
 Write-Host "Client $args."
 
-function HasProperty($object, $propertyName)
+function HasProperty
 {
+	[CmdletBinding()]
+	  param (
+		  $object
+		, [string] $propertyName
+	  )
 	Write-Host "reached $propertyName"
     $propertyName -in $object.PSobject.Properties.Name
 }
