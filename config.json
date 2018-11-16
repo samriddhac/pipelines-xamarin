@@ -1,0 +1,47 @@
+{
+    "AppConfig":  {
+                      "AccountId":  "a",
+                      "AccountSecret":  "ab",
+                      "Environment":  "Dev",
+                      "AccountCode":  "Brightcare",
+                      "ApiRootUrl":  "https://ext-qa-mobileapp.brightstar.com/Gateway.Api_deploy/",
+                      "CurrencyCulture":  "en-US",
+                      "DefaultCulture":  "en-US",
+                      "ShouldBypassSSLErrors":  true
+                  },
+    "BusinessConfig":  {
+                           "TermsAndConditionUrl":  "http://terms.brightstar.com",
+                           "Products":  [
+                                            "@{ProductType=1; SupportPhoneNumber=444-333-2323; SupportEmail=support@dps.com; PrivacyPolicyUrl=https://www.brightstarprotect.com/BrightstarDP-Privacy/es-us; TermsAndConditionUrl=https://www.brightstarprotect.com/BrightstarDP-Terms/es-us; DiagnosticLimit=99; DiagnosticExpirationInMinutes=360000; TransactionExpirationInMinutes=360000}",
+                                            "@{ProductType=2; SupportPhoneNumber=343-657-8787; SupportEmail=support@echo.com; PrivacyPolicyUrl=https://www.brightstarprotect.com/BrightstarDP-Privacy/en-us; TermsAndConditionUrl=https://www.brightstarprotect.com/BrightstarDP-Terms/en-us; DiagnosticLimit=99; DiagnosticExpirationInMinutes=360000; TransactionExpirationInMinutes=360000}"
+                                        ]
+                       },
+    "AndroidSetting":  {
+                           "DiagnosticVendor":  1,
+                           "DiagnosticVendorSetting":  "{\"Secret\":\"uBp0mGmYHWk+nEtE\"}",
+                           "NotificationVendor":  1,
+                           "NotificationVendorSetting":  "{\"Secret\":\"d1fe2b7d-cb83-45bc-a064-82f5bd973e35\", \"SenderId\":\"98496313860\"}",
+                           "CrashVendor":  1,
+                           "CrashVendorSetting":  "{\"Secret\":\"d1fe2b7d-cb83-45bc-a064-82f5bd973e35\"}",
+                           "AnalyticsVendor":  1,
+                           "AnalyticsVendorSetting":  "{\"Secret\":\"d1fe2b7d-cb83-45bc-a064-82f5bd973e35\"}"
+                       },
+    "iOSSetting":  {
+                       "DiagnosticVendor":  1,
+                       "DiagnosticVendorSetting":  "{\"Secret\":\"uBp0mGmYHWk+nEtE\"}",
+                       "NotificationVendor":  1,
+                       "NotificationVendorSetting":  "{\"Secret\":\"d1fe2b7d-cb83-45bc-a064-82f5bd973e35\", \"SenderId\":\"98496313860\"}",
+                       "CrashVendor":  1,
+                       "CrashVendorSetting":  "{\"Secret\":\"d1fe2b7d-cb83-45bc-a064-82f5bd973e35\"}",
+                       "AnalyticsVendor":  1,
+                       "AnalyticsVendorSetting":  "{\"Secret\":\"d1fe2b7d-cb83-45bc-a064-82f5bd973e35\"}"
+                   },
+    "TestEnvironmentSetting":  {
+                                   "Make":  "Apple",
+                                   "Model":  "iPhone 6s",
+                                   "DisplayModel":  "iPhone 6s",
+                                   "Memory":  16,
+                                   "MemoryType":  "GB",
+                                   "IMEI":  "359030065693156"
+                               }
+}

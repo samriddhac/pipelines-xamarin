@@ -24,12 +24,11 @@ jobs:
       targetType: 'filePath'
       filePath: 'preparebuild.ps1'
       arguments: '$(client)'
-      #script: '# Write your powershell commands here.' # Required when targetType == Inline
-      #errorActionPreference: 'stop' # Optional. Options: stop, continue, silentlyContinue
-      #failOnStderr: false # Optional
-      #ignoreLASTEXITCODE: false # Optional
-      #pwsh: false # Optional
-      #workingDirectory: # Optional
+      
+  - task: Bash@3
+    inputs:
+      targetType: 'filePath'
+      filePath: 'updateconfig.sh'
 
   - task: XamarinAndroid@1
     inputs:
