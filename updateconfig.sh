@@ -1,9 +1,9 @@
 #!/bin/bash
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" < /dev/null 2> /dev/null
 
-accountId=$1
+accountId=$(AccountId)
 
-basePath=$Env:BUILD_SOURCESDIRECTORY
+basePath=$(Build.SourcesDirectory)
 sourcePath='\'
 configFile='config.json'
 
